@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    image: mysql:5.6
+    container_name: mysql_container
+    restart: always
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: anpidb
+      MYSQL_USER: rescuenow
+      MYSQL_PASSWORD: rescuenow119
+      MYSQL_ROOT_HOST: '%'
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+#  app:
+#    build:
+#      context: .
+#      dockerfile: ./docker/Dockerfile
+#      args:
+#        - JDBC_SERVER_REF=mysqldb
+#        - JDBC_SERVER_UPD=mysqldb
+#    image: anpi_localdb
+#    container_name: anpi_localdb
+#    restart: always
+#    environment:
+#          PAYARA_ARGS: "--debug"
+#    ports:
+#      - 8080:8080
+#      - 4848:4848
+#      - 8181:8181
+#      - 9009:9009
+#    links:
+#      - mysqldb

@@ -1,0 +1,8 @@
+[mysql]
+  dbname="anpidb"
+  host="10.60.34.10"
+  port=3306
+  user="rescuenow"
+  pass="rescuenow119"
+  sslmode="false"
+  whitelist=["NOTICE","USER_MST","country"]
